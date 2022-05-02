@@ -4,8 +4,8 @@
 In previous assignments we downloaded shapefiles extracts from OSM and found them very difficult to style. In a later assignment we used an alternative method for importing `pbf` files using `osm2pgsql` that allowed us to use someone else's symbology to render them nicely in QGIS. In this assignment, we will use yet another method for importing OSM data: `imposm` and someone else's symbology pre-configured for a geoserver usage. This assignment borrows centrally from a single tutorial source but deviates in order to accomodate our docker-based geoserver and postgis installations. We will build on a previous assignment by re-using and re-importing the Iceland OSM data extract.
 
 ## Deliverables
+- `docker-compose.yml` (updated with your changes)
 - `screencap-final.png`
-
 
 following this tutorial:
 https://github.com/geosolutions-it/osm-styles/blob/master/README.md
@@ -50,6 +50,8 @@ should be changed to:
 ```
 
 Launch your `postgis` and `geoserver` containers from the shell with `docker compose up` from the same directory as this `docker-compose.yml` file
+
+*Deliverable:* Add your updated `docker-compose.yml` file to your assignment branch and include it in your final Pull Request.
 
 ### 4. [Redundant from previous assignment] Create an `iceland` database
 
@@ -105,4 +107,5 @@ Then: `Save`
 Test the data store by looking at layer previews of the `osm` data. To debug whether any issues are with the `osm` (postgis) database or the `osm-lowres` (large geopackage you downloaded), look at Layer Previews of layers in both stores. If everything looks good, open up the `osm:osm` layergroup 
 
 ## Deliverable
+- `docker-compose.yml` (updated with your changes)
 - `screencap-final.png` - Take a screenshot of the `osm:osm` layer preview zoomed into Reykjavik and include that in a Pull Request to be merged with master.
