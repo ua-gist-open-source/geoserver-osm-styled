@@ -74,7 +74,7 @@ I created a `[Dockerfile](./Dockerfile)` that contains the [imposm3](https://imp
 
 This section serves as an alternate method for [The OSM PostGIS Database](https://github.com/geosolutions-it/osm-styles#the-osm-postgis-database) from the osm-styles README. Essentially, we are going to run `imposm` with:
 - volume mapping containing the `imposm/mapping.yml` file from the osm-styles repo
-- volume mapping containing the `iceland-latest.osm.pbf` file
+- same volume mapping containing the `iceland-latest.osm.pbf` file
 - on the `gist604b` network so it can communicate with our postgis instance
 
 #### Bonus experience (the hard option)
@@ -86,13 +86,13 @@ docker build -t imposm .
 That will build a docker image from the `Dockerfile` in this repo. Now use that to import the osm data:
 
 ```
-docker run -it --network gist604b -v $SOME_DIR/geoserver_data_styled/data_dir:/opt/geoserver/data_dir aaryno/imposm sh -c "imposm import -mapping /opt/geoserver/data_dir/imposm/mapping.yml -read /opt/geoserver/data_dir/pbf/iceland-latest.osm.pbf -overwritecache -write -connection postgis://postgres:postgres@postgis/iceland"
+docker run -it --network gist604b -v $SOME_DIR/geoserver_data_styled/data_dir:/opt/geoserver/data_dir aaryno/imposm sh -c "imposm import -mapping /opt/geoserver/data_dir/imposm/mapping.yml -read /opt/geoserver/data_dir/data/iceland-latest.osm.pbf -overwritecache -write -connection postgis://postgres:postgres@postgis/iceland"
 ```
 
 #### The easy option
 
 ```
-docker run -it --network gist604b -v $SOME_DIR/geoserver_data_styled/data_dir:/opt/geoserver/data_dir aaryno/imposm sh -c "imposm import -mapping /opt/geoserver/data_dir/imposm/mapping.yml -read /opt/geoserver/data_dir/pbf/iceland-latest.osm.pbf -overwritecache -write -connection postgis://postgres:postgres@postgis/iceland"
+docker run -it --network gist604b -v $SOME_DIR/geoserver_data_styled/data_dir:/opt/geoserver/data_dir aaryno/imposm sh -c "imposm import -mapping /opt/geoserver/data_dir/imposm/mapping.yml -read /opt/geoserver/data_dir/data/iceland-latest.osm.pbf -overwritecache -write -connection postgis://postgres:postgres@postgis/iceland"
 ```
 
 ### 7. Fix the `osm` data store in geoserver
