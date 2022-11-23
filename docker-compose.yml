@@ -5,19 +5,15 @@ services:
     image: "mdillon/postgis"
     hostname: postgis
     ports:
-      - "25432:5432"
+      - "5432:5432"
     volumes:
-# Uncomment his for windows, but update your path to reflect where you want your database data stored
-# Change only the "c:/gist604b_data" and leave the "postgres_data/data:/var/lib/postgresql/data" as is.
-      - /Users/aaryn/gist604b_data/postgres_data/data:/var/lib/postgresql/data
+      - /workspaces/geoserver-osm-styled/postgres_data/data:/var/lib/postgresql/data
   geoserver:
     image: "kartoza/geoserver"
     ports:
-      - "8280:8080"
+      - "8080:8080"
     volumes:
-# Uncomment his for windows, but update your path to reflect where you want your geoserver data stored
-# Change only the "c:/gist604b_data" and leave the "geoserver_data/data_dir:/opt/geoserver/data_dir" as is.
-      - /Users/aaryn/gist604b_data/geoserver_data_osm_styles/data_dir:/opt/geoserver/data_dir
+      - /workspaces/geoserver-osm-styled/osm-styles:/opt/geoserver/data_dir
     environment:
       - GEOSERVER_ADMIN_USER=admin
       - GEOSERVER_ADMIN_PASSWORD=geoserver
@@ -25,6 +21,5 @@ services:
 
 networks:
   default:
-    external:
-      name: gist604b
+    name: gist604b
 
