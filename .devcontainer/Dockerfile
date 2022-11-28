@@ -30,7 +30,6 @@ RUN apt-get update \
 
 RUN mkdir /opt/imposm \
     && curl -L -O https://github.com/omniscale/imposm3/releases/download/v0.11.1/imposm-0.11.1-linux-x86-64.tar.gz -o imposm-0.11.1-linux-x86-64.tar.gz  \
-    && tar –xvzf imposm-0.11.1-linux-x86-64.tar.gz  \
     && gunzip imposm-0.11.1-linux-x86-64.tar.gz  \
     && tar xvf imposm-0.11.1-linux-x86-64.tar -C /opt/imposm \
     && ln -s /usr/local/bin/imposm /opt/imposm/imposm-0.11.1-linux-x86-64/imposm \
