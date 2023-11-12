@@ -8,7 +8,9 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - type: volume
+        source: postgresql_data_volume
+        target: /var/lib/postgresql/data
   geoserver:
     image: "kartoza/geoserver:2.22.0"
     ports:
@@ -21,6 +23,7 @@ services:
       - GEOSERVER_DATA_DIR=/opt/geoserver/data_dir
       - STABLE_EXTENSIONS=css-plugin,feature-pregeneralized-plugin
       - HTTP_PROXY_NAME=${CODESPACE_NAME}-8080.preview.app.github.dev
+      - HTTP_PROXY_PORT=443
       - HTTP_SCHEME=https
       - MAXIMUM_MEMORY=756M
       - INITIAL_MEMORY=128M
@@ -29,3 +32,5 @@ networks:
   default:
     name: gist604b
 
+volumes:
+  postgresql_data_volume:
