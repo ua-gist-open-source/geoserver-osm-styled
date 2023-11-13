@@ -1,6 +1,3 @@
-volumes:
-  postgres_data:
-
 services:
   postgis:
     image: "mdillon/postgis"
