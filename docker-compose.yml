@@ -13,7 +13,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - /workspaces/${RepositoryName}/osm-styles:/opt/geoserver/data_dir
+      - /workspaces/${RepositoryName}/osm-styles:/opt/geoserver_data
     environment:
       - ROOT_WEBAPP_REDIRECT=true
       - CORS_ENABLED=true
@@ -26,6 +26,8 @@ services:
       - GEOSERVER_CSRF_DISABLE=true
       - PROXY_BASE_URL=https://${CODESPACE_NAME}-8080.app.github.dev/geoserver
       - SKIP_DEMO_DATA=true
+      - INSTALL_EXTENSIONS=true
+      - STABLE_EXTENSIONS=css,feature-pregeneralized
 
 networks:
   default:
