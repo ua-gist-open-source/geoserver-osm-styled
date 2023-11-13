@@ -12,21 +12,23 @@ services:
         source: postgresql_data_volume
         target: /var/lib/postgresql/data
   geoserver:
-    image: "kartoza/geoserver:2.22.0"
+    image: docker.osgeo.org/geoserver:2.24.x
     ports:
       - "8080:8080"
     volumes:
       - /workspaces/${RepositoryName}/osm-styles:/opt/geoserver/data_dir
     environment:
-      - GEOSERVER_ADMIN_USER=admin
-      - GEOSERVER_ADMIN_PASSWORD=geoserver
-      - GEOSERVER_DATA_DIR=/opt/geoserver/data_dir
-      - STABLE_EXTENSIONS=css-plugin,feature-pregeneralized-plugin
-      - HTTP_PROXY_NAME=${CODESPACE_NAME}-8080.preview.app.github.dev
-      - HTTP_PROXY_PORT=443
-      - HTTP_SCHEME=https
-      - MAXIMUM_MEMORY=756M
-      - INITIAL_MEMORY=128M
+      - ROOT_WEBAPP_REDIRECT=true
+      - CORS_ENABLED=true
+      - CORS_ALLOWED_ORIGINS="${CODESPACE_NAME}-8080.app.github.dev,github.dev,localhost,0.0.0.0,127.0.0.1"
+      - CORS_ALLOWED_METHODS="GET,POST,PUT,DELETE,HEAD,OPTIONS"
+      - CORS_ALLOWED_HEADERS="*"
+      - geoserver.xframe.shouldSetPolicy=false
+      - geoserver.xContentType.shouldSetPolicy=false
+      - GEOSERVER_CSRF_WHITELIST=${CODESPACE_NAME}-8080.app.github.dev
+      - GEOSERVER_CSRF_DISABLE=true
+      - PROXY_BASE_URL=https://${CODESPACE_NAME}-8080.app.github.dev/geoserver
+      - SKIP_DEMO_DATA=true
 
 networks:
   default:
