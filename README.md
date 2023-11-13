@@ -42,9 +42,9 @@ docker compose up -d
 
 Next you will need to create a `hawaii` database in postgresql.
 ```
-psql -U postgres -c "CREATE DATABASE hawaii"
-psql -U postgres -d hawaii -c "CREATE EXTENSION postgis"
-psql -U postgres -d hawaii -c "CREATE EXTENSION hstore"
+psql -c "CREATE DATABASE hawaii"
+psql -d hawaii -c "CREATE EXTENSION postgis"
+psql -d hawaii -c "CREATE EXTENSION hstore"
 ```
 If you get the error `connection to server failed` it may be that postgresql container is still booting up. Try again.
 
