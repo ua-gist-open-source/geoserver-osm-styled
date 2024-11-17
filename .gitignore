@@ -1,0 +1,10 @@
+imposm-0.11.1-linux-x86-64
+imposm-0.11.1-linux-x86-64.tar
+imposm-0.11.1-linux-x86-64.tar.gz
+*.gz
+imposm-0.11.1-linux-x86-64.tar
+hawaii-latest.osm.pbf
+*.zip
+geoserver_data
+postgres_data
+osm-styles
