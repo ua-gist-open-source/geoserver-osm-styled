@@ -9,7 +9,7 @@ services:
         source: postgresql_data_volume
         target: /var/lib/postgresql/data
   geoserver:
-    image: docker.osgeo.org/geoserver:2.24.x
+    image: docker.osgeo.org/geoserver:2.26.x
     ports:
       - "8080:8080"
     volumes:
